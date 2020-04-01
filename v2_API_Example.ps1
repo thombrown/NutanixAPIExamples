@@ -1,4 +1,4 @@
-#Ignore SSL certificate
+#Ignore SSL certificate snippet for Powershell v5 or below.  If using Powershell v6 or above, this snippet is not needed.
 add-type @"
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
