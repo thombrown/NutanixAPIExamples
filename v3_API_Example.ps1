@@ -1,4 +1,4 @@
-#Ignore SSL certificate
+#Ignore SSL certificate snippet for Powershell v5 and below. If using Powershell v6 or above, this is not necessary.
 add-type @"
     using System.Net;
     using System.Security.Cryptography.X509Certificates;
@@ -14,7 +14,7 @@ add-type @"
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
 
 #Enter login info
-$clusterip = read-host "Enter Prism Element Cluster IP"
+$clusterip = read-host "Enter Prism Central Cluster IP"
 $creds = Get-Credential
 $VMtoFind = "PrismCentral"
 
