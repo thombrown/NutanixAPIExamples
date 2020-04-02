@@ -28,7 +28,7 @@ $body = @"
 "@
 #Pass the credentials in the header
 $Header = @{"Authorization" = "Basic "+[System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($creds.UserName+":"+$creds.GetNetworkCredential().Password))}
-#Here is the actual API request
+#Here is the actual API request. If using Powershell v6 or higher with a self signed certificate on Prism Central, use -SkipCertificateCheck on the end of the command
 $response = Invoke-WebRequest -Method Post -Uri $Uri -Headers $Header -ContentType "application/json" -Body $body
 #Take the output and convert it from JSON to a readable format
 $VMs = (ConvertFrom-Json -InputObject $response.content).entities
