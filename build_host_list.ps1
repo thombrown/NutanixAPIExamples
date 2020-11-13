@@ -3,6 +3,8 @@ This script is used against Prism Element to build an inventory of the hosts and
 Written by Thomas Brown (thomas.brown@nutanix.com)
 #>
 
+
+
 If ($PSVersionTable.PSVersion.Major -eq '5'){
 #Ignore SSL certificate
 add-type @"
@@ -43,6 +45,7 @@ $hosts = (ConvertFrom-Json -InputObject $response.content).entities
 $Output = foreach ($temphost in $hosts) {
     New-Object -TypeName PSObject -Property @{
       name = $temphost.name
+      clusterUUID = $temphost.cluster_uuid
       ipmi_address = $temphost.ipmi_address 
       hypervisor_address = $temphost.hypervisor_address
       CVM_IP = $temphost.service_vmexternal_ip
@@ -55,10 +58,14 @@ $Output = foreach ($temphost in $hosts) {
       Cores = $temphost.num_cpu_cores
       Sockets = $temphost.num_cpu_sockets
       memory_capacity_in_GiB = $temphost.memory_capacity_in_bytes/1074000000
-      SSD_Capacity_in_TiBs = $temphost.usage_stats.'storage_tier.ssd.capacity_bytes'/1000000000000
+      SSD_Capacity_in_TiBs = $temphost.usage_stats.'storage_tier.ssd.capacity_bytes'/1100000000000
+      numberOfVMs = $temphost.num_vms
 
-    } | Select-Object name,ipmi_address,hypervisor_address,CVM_IP,Node_Serial,block_serial,block_location,model,hypervisor,CPU,Cores,Sockets,memory_capacity_in_GiB,SSD_Capacity_in_TiBs
+    } | Select-Object name,clusterid,ipmi_address,hypervisor_address,CVM_IP,Node_Serial,block_serial,block_location,model,hypervisor,CPU,Cores,Sockets,memory_capacity_in_GiB,SSD_Capacity_in_TiBs,numberOfVMs
   }
   $Output | Export-Csv $env:TEMP\hosts.csv
   
   Write-Host "File written to " $env:TEMP\hosts.csv
+
+
+
