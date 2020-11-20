@@ -4,20 +4,6 @@ Written by Thomas Brown (thomas.brown@nutanix.com)
 Written and tested against Powershell v7.1.0 and Powershell v5.1
 #>
 
-<#
-function Failure {
-    $global:helpme = $body
-    $global:helpmoref = $moref
-    $global:result = $_.Exception.Response.GetResponseStream()
-    $global:reader = New-Object System.IO.StreamReader($global:result)
-    $global:responseBody = $global:reader.ReadToEnd();
-    Write-Host -BackgroundColor:Black -ForegroundColor:Red "Status: A system exception was caught."
-    Write-Host -BackgroundColor:Black -ForegroundColor:Red $global:responsebody
-    Write-Host -BackgroundColor:Black -ForegroundColor:Red "The request body has been saved to `$global:helpme"
-    break
-    }
-    #>
-
 function Get-PCClusters {
 <#
   .DESCRIPTION
@@ -111,8 +97,7 @@ function Get-PEHosts {
     }
     #Take the output and convert it from JSON to a readable format
     $cluster = (ConvertFrom-Json -InputObject $clusterResponse.content)
-
-
+    
     $script:inventory = foreach ($temphost in $hosts) {
         New-Object -TypeName PSObject -Property @{
         hostname = $temphost.name
