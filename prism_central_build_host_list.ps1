@@ -119,10 +119,11 @@ function Get-PEHosts {
         memory_capacity_in_GiB = $temphost.memory_capacity_in_bytes/1074000000
         SSD_Capacity_in_TiBs = $temphost.usage_stats.'storage_tier.ssd.capacity_bytes'/1100000000000
         numberOfVMs = $temphost.num_vms-1
-        bios_version = $temphost.bios_version
-        bmc_version = $temphost.bmc_version
+        #Removing the BIOS and BMC info.  Prism API didn't return same info as LCM.  Perhaps pull info from LCM API in future version.
+        #bios_version = $temphost.bios_version
+        #bmc_version = $temphost.bmc_version
 
-        } | Select-Object hostname,clusterName,clusterUUID,ipmi_address,hypervisor_address,CVM_IP,Node_Serial,block_serial,block_slot,model,AOSVersion,hypervisor,CPU,Cores,Sockets,memory_capacity_in_GiB,SSD_Capacity_in_TiBs,numberOfVMs,bios_version,bmc_version
+        } | Select-Object hostname,clusterName,clusterUUID,ipmi_address,hypervisor_address,CVM_IP,Node_Serial,block_serial,block_slot,model,AOSVersion,hypervisor,CPU,Cores,Sockets,memory_capacity_in_GiB,SSD_Capacity_in_TiBs,numberOfVMs
     }
 
     return $inventory
