@@ -1,3 +1,4 @@
+<#
 #Ignore SSL certificate snippet for Powershell v5 and below. If using Powershell v6 or above, this is not necessary.
 add-type @"
     using System.Net;
@@ -13,6 +14,7 @@ add-type @"
 [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
 [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
 #End of SSL Certificate snippet
+#>
 
 
 #Enter login info
