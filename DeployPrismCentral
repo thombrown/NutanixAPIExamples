@@ -29,6 +29,8 @@ $Header = @{
     "Authorization" = "Basic "+[System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes($creds.UserName+":"+$creds.GetNetworkCredential().Password))
 }
 
+#Make sure to update the storage container and network UUIDs prior to sending this
+
 #Build the body of the request
 $body = @"
 {
