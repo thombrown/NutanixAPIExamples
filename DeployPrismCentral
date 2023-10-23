@@ -1,5 +1,6 @@
 <#
 Sample script to deploy an XL Scale out Prism Central to an AOS cluster which already has an existing Prism Central registered and deployed
+Version 0.2
 Written by Thomas Brown (thomas.brown@nutanix.com)
 #>
 
