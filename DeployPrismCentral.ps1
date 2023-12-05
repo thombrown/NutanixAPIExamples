@@ -10,6 +10,10 @@ SCP the 1 click PC bundle and metadata file to /home/nutanix on a CVM then execu
 ncli software upload file-path=/home/nutanix/pc.2023.3.tar software-type=prism_central_deploy meta-file-path=/home/nutanix/generated-pc.2023.3-metadata.json
 #>
 
+<#
+After deploying PC, you need to SSH to PC as nutanix and change the admin password by executing
+ncli user reset-password user-name=admin password=yyyyy
+#>
 
 <#
 PC Sizes for my reference
