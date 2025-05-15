@@ -1,3 +1,6 @@
+#Install this module using Import-Module
+#Author: Thomas Brown (thomas.brown@nutanix.com)
+
 Write-Host "This Powershell module is not officially supported by Nutanix.  Any usage is at your own risk. 
 
 It uses the Nutanix v4 API hosted by Prism Central which requires PC 2024.3 or later and AOS 7.0 or later.  To find out more, read here - https://www.nutanix.dev/api-reference-v4/"
