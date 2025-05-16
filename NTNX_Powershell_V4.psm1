@@ -586,6 +586,7 @@ function New-NTNXVM
     Write-Host "This cmdlet is in progress and currently does nothing"
 
 
+#Example of fully populated VM payload
     $template= @"
 
 {
@@ -803,7 +804,22 @@ function New-NTNXVM
   }
 
 "@
-    
+
+
+#Minimum required to create a VM
+$minimum= @"
+
+"
+{
+    "$objectType": "vmm.v4.ahv.config.Vm",
+    "cluster": {
+        "extId": "0006128f-1b27-63b2-0564-65240d76811e",
+        "$objectType": "vmm.v4.ahv.config.ClusterReference"
+    }
+}
+"@
+
+
   $VM = @{}
   $VM.add("name",$VMname)
   if($VMdescription){
@@ -1201,5 +1217,6 @@ function Remove-NTNXCategoryFromVM
         $header.Remove("Ntnx-Request-Id")
         $header.Remove('If-match')
 }
+
 
 
